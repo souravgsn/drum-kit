@@ -3,13 +3,16 @@ var num = document.querySelectorAll(".drum");
 for (var i = 0; i < num.length; i++) {
     num[i].addEventListener("click", function () {
         var x = this.innerHTML;
-
+		pressed(x);
 		makeSound(x);
+
     });
 }
 
 document.addEventListener("keypress",function(event){
+	
 	makeSound(event.key);
+	pressed(event.key);
 });
 
 
@@ -46,4 +49,12 @@ function makeSound(key) {
             audio.play();
             break;
     }
+}
+
+function pressed(x){
+	var y = document.querySelector("."+ x);
+	y.classList.add("pressed");
+	setTimeout(() => {
+		y.classList.remove("pressed");
+	}, 100);
 }
